@@ -20,6 +20,7 @@ import AdminDashBoard from './AdminDashBoard';
 import ManageUsers from './ManageUsers';
 import EditUser from './EditUser';
 import RequireAuth from './RequireAuth';
+import { useEffect } from 'react';
 
 import {  Route, Routes,} from  'react-router-dom'
 
@@ -34,6 +35,10 @@ const ROLES={
 }
 
 function App() {
+  useEffect(() => {
+    document.title = "Collins Repairs Shop";
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
