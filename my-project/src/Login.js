@@ -1,9 +1,10 @@
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import axios from './api/axios';
+import axios from 'axios';
 import useAuth from './useAuth';
 
-const LOGIN_URL = '/auth';
+// const LOGIN_URL = '/auth';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        LOGIN_URL,
+        `${API_URL}/auth`,
         JSON.stringify({ username, password }),
         {
           headers: { 'Content-Type': 'application/json' },

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from './api/axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BsPencilSquare, BsTrash } from 'react-icons/bs';
 import Modal from 'react-modal';
 
 // Set the app element for accessibility
 Modal.setAppElement('#root');
-
+const API_URL = process.env.REACT_APP_API_URL
 const ManagerUsers = () => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,7 +16,7 @@ const ManagerUsers = () => {
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   useEffect(() => {
-    axios.get('/User')
+    axios.get(`${API_URL}/User`)
       .then(response => {
         setUsers(response.data); // Users are already sorted by createdAt in backend
         setLoading(false);
@@ -43,7 +43,7 @@ const ManagerUsers = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete('/User', {
+      const response = await axios.delete(`${API_URL}/User`, {
         data: { id: selectedUserId }
       });
       if (response.status === 200) {

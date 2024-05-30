@@ -4,6 +4,7 @@ import useAxiosPrivate from './hooks/useAxiosPrivate.js';
 import { Link , useLocation, useNavigate} from 'react-router-dom';
 import { BsPencilSquare, BsTrash } from 'react-icons/bs';
 import Modal from 'react-modal';
+const API_URL = process.env.REACT_APP_API_URL
 
 // Set the app element for accessibility
 Modal.setAppElement('#root');
@@ -20,7 +21,7 @@ const ManageUsers = () => {
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   useEffect(() => {
-    axiosPrivate.get('/User')
+    axiosPrivate.get(`${API_URL}/User`)
       .then(response => {
         setUsers(response.data); // Users are already sorted by createdAt in backend
         setLoading(false);
@@ -48,7 +49,7 @@ const ManageUsers = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete('/User', {
+      const response = await axios.delete(`${API_URL}/User`, {
         data: { id: selectedUserId }
       });
       if (response.status === 200) {

@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
-const POSTS_URL = "http://localhost:3500/User";
+// const POSTS_URL = "http://localhost:3500/User";
+const API_URL = process.env.REACT_APP_API_URL;
+
 
 const AddNewUser = () => {
   const [username, setUsername] = useState('');
@@ -41,7 +43,7 @@ const AddNewUser = () => {
     }
 
     try {
-      const response = await axios.post(POSTS_URL, {
+      const response = await axios.post(`${API_URL}/User`, {
         username: username,
         password: password,
         roles: Array.isArray(roles) ? roles : [roles]

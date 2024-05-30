@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from './useAuth'; // Adjust the import based on your actual useAuth hook location
-
+const API_URL = process.env.REACT_APP_API_URL;
 const EmployeeEditNote = () => {
   const [note, setNote] = useState({
     id: '',
@@ -21,7 +21,7 @@ const EmployeeEditNote = () => {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const response = await axios.get(`http://localhost:3500/Note/${id}`);
+        const response = await axios.get(`${API_URL}/Note${id}`);
         const noteData = response.data;
 
         // Check if the authenticated user is the owner of the note
@@ -88,7 +88,7 @@ const EmployeeEditNote = () => {
     }
 
     try {
-      const response = await axios.patch('http://localhost:3500/Note', {
+      const response = await axios.patch(`${API_URL}/Note`, {
         ...note
       });
       if (response.status !== 200) {

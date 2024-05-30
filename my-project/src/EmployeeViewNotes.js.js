@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const NOTES_URL = "http://localhost:3500/Note";
+// const NOTES_URL = "http://localhost:3500/Note";
+const API_URL = process.env.REACT_APP_API_URL;
 
 const EmployeeViewNotes = () => {
   const [notes, setNotes] = useState([]);
@@ -12,7 +13,7 @@ const EmployeeViewNotes = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await axios.get(NOTES_URL);
+        const response = await axios.get(API_URL);
         setNotes(response.data);
         setLoading(false);
       } catch (error) {

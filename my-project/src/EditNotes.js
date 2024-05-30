@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
+// `http://localhost:3500/Note/${id}`);
 
 const EditNote = () => {
   const [note, setNote] = useState({
@@ -17,7 +19,7 @@ const EditNote = () => {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const response = await axios.get(`http://localhost:3500/Note/${id}`);
+        const response = await axios.get( `${API_URL}/Note/${id}`);
         const noteData = response.data;
         setNote({
           id: noteData._id,
@@ -65,10 +67,11 @@ const EditNote = () => {
     }));
   };
 
+
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.patch('http://localhost:3500/Note', {
+      const response = await axios.patch(`${API_URL}/Note`, {
         ...note
       });
       if (response.status !== 200) {
