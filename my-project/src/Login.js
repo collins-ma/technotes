@@ -46,8 +46,9 @@ const Login = () => {
       setUserName('');
       setPassword('');
       setSuccess(true);
-      const from = location.state?.from?.pathname || '/dashboard'; // Conditionally navigate
-      navigate(from, { replace: true });
+      // const from = location.state?.from?.pathname || '/dashboard'; // Conditionally navigate
+      // navigate(from, { replace: true });
+      navigate('/dashboard')
     } catch (err) {
       if (!err?.response) {
         setErrMsg('No Server Response');
