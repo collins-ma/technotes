@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL
 
 const DeleteUser = () => {
   const [userId, setUserId] = useState('');
@@ -16,7 +17,7 @@ const DeleteUser = () => {
     }
 
     try {
-      const response = await axios.delete(`http://localhost:3500/user/${userId}`);
+      const response = await axios.delete(`${API_URL}/User${userId}`);
       if (response.status === 200) {
         setMessage('User deleted successfully!');
       } else {
