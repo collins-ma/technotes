@@ -74,13 +74,13 @@ const Login = () => {
   return (
     <>
       {success ? (
-        <section className="flex justify-center items-center h-screen">
+        <section className="flex justify-center items-center h-screen bg-cyan-950">
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
             <span className="block sm:inline">You are logged in!</span>
           </div>
         </section>
       ) : (
-        <section className="flex justify-center items-center h-screen">
+        <section className="flex justify-center items-center h-screen bg-cyan-950">
           <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4 md:w-1/2 lg:w-1/3">
             <p
               ref={errRef}
