@@ -2,14 +2,14 @@ import axios from 'axios';
 import useAuth from '../useAuth';
 
 // const REFRESH_URL = 'http://localhost:3500/refresh';
-const API_URL = process.env.REACT_APP_API_URL
+const apiUrl = process.env.REACT_APP_API_URL
 
 const useRefreshToken = () => {
     const { setAuth } = useAuth();
 
     const refresh = async () => {
         try {
-            const response = await axios.get(`${API_URL}/refresh`, {
+            const response = await axios.get(`${apiUrl}/refresh`, {
                 withCredentials: true,
             });
             setAuth(prev => {

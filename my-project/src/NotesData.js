@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // const NOTES_URL = 'http://localhost:3500/Note';
-const API_URL = process.env.REACT_APP_API_URL
+const apiUrl = process.env.REACT_APP_API_URL
 
 const NotesData = () => {
   const [notes, setNotes] = useState([]);
@@ -11,7 +11,7 @@ const NotesData = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch(API_URL);
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error('Failed to fetch notes');
         }

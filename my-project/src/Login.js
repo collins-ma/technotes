@@ -4,7 +4,7 @@ import axios from 'axios';
 import useAuth from './useAuth';
 
 // const LOGIN_URL = '/auth';
-const API_URL = process.env.REACT_APP_API_URL;
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        `${API_URL}/auth`,
+        `${apiUrl}/auth`,
         JSON.stringify({ username, password }),
         {
           headers: { 'Content-Type': 'application/json' },

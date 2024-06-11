@@ -4,7 +4,7 @@ import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
 
 // const USERS_URL = 'http://localhost:3500/User';
-const API_URL = process.env.REACT_APP_API_URL;
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const ManagerEditUser = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ const ManagerEditUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`${API_URL}/${id}`);
+        const response = await axios.get(`${apiUrl}/${id}`);
         const { username, roles, active } = response.data;
         setUser({ id, username, password: '', roles, active });
       } catch (error) {
@@ -44,7 +44,7 @@ const ManagerEditUser = () => {
       userData.password = user.password;
     }
     try {
-      await axios.patch(`${API_URL}`, userData);
+      await axios.patch(`${apiUrl}`, userData);
       setSuccess('User updated successfully'); // Set success message
       setError('');
       navigate('/admin/manage-users'); // Optionally navigate to manage users

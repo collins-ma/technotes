@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from './useAuth'; // Adjust the import based on your actual useAuth hook location
-const API_URL = process.env.REACT_APP_API_URL;
+const apiUrl=process.env.REACT_APP_API_URL;
 const EmployeeEditNote = () => {
   const [note, setNote] = useState({
     id: '',
@@ -21,15 +21,15 @@ const EmployeeEditNote = () => {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const response = await axios.get(`${API_URL}/Note${id}`);
+        const response = await axios.get(`${apiUrl}/Note${id}`);
         const noteData = response.data;
 
         // Check if the authenticated user is the owner of the note
-        if (noteData.username !== auth.user) {
-          setErrorMessage('You do not have permission to edit this note.');
-          setTimeout(() => navigate('/employee/notes'), 3000);
-          return;
-        }
+        // if (noteData.username !== auth.user) {
+        //   setErrorMessage('You do not have permission to edit this note.');
+        //   setTimeout(() => navigate('/employee/notes'), 3000);
+        //   return;
+        // }
 
         setNote({
           id: noteData._id,
@@ -82,13 +82,13 @@ const EmployeeEditNote = () => {
     e.preventDefault();
 
     // Prevent form submission if the user is not the owner
-    if (note.username !== auth.username) {
-      setErrorMessage('You do not have permission to edit this note.');
-      return;
-    }
+    // if (note.username !== auth.username) {
+    //   setErrorMessage('You do not have permission to edit this note.');
+    //   return;
+    // }
 
     try {
-      const response = await axios.patch(`${API_URL}/Note`, {
+      const response = await axios.patch(`${apiUrl}/Note`, {
         ...note
       });
       if (response.status !== 200) {

@@ -6,7 +6,7 @@ import Modal from 'react-modal';
 
 // Set the app element for accessibility
 Modal.setAppElement('#root');
-const API_URL = process.env.REACT_APP_API_URL
+const apiUrl = process.env.REACT_APP_API_URL
 const ManagerUsers = () => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,7 +16,7 @@ const ManagerUsers = () => {
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   useEffect(() => {
-    axios.get(`${API_URL}/User`)
+    axios.get(`${apiUrl}/User`)
       .then(response => {
         setUsers(response.data); // Users are already sorted by createdAt in backend
         setLoading(false);
@@ -43,7 +43,7 @@ const ManagerUsers = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`${API_URL}/User`, {
+      const response = await axios.delete(`${apiUrl}/User`, {
         data: { id: selectedUserId }
       });
       if (response.status === 200) {
